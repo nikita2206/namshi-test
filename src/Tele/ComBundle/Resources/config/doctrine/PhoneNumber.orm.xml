@@ -1,0 +1,19 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Tele\ComBundle\Entity\PhoneNumber" table="phone_numbers" repository-class="Tele\ComBundle\Repository\PhoneNumberRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="active" column="active" type="boolean" nullable="false" />
+        <field name="number" column="number" type="string" length="32" nullable="false" />
+
+        <many-to-one target-entity="Tele\ComBundle\Entity\Customer" field="customer" inversed-by="phones" />
+
+    </entity>
+
+</doctrine-mapping>

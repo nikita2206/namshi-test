@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="telecom.repository.customer" class="Tele\ComBundle\Repository\CustomerRepository"
+                 factory-service="doctrine.orm.entity_manager" factory-method="getRepository">
+            <argument>TeleComBundle:Customer</argument>
+        </service>
+
+        <service id="telecom.repository.phone_number" class="Tele\ComBundle\Repository\PhoneNumberRepository"
+                 factory-service="doctrine.orm.entity_manager" factory-method="getRepository">
+            <argument>TeleComBundle:PhoneNumber</argument>
+        </service>
+
+        <service id="telecom.listener.request_format_remove" class="Tele\ComBundle\Listener\RequestFormatRemoveListener">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+    </services>
+
+</container>
